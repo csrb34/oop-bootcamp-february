@@ -7,8 +7,8 @@ import static org.testng.Assert.assertEquals;
 public class RectangleTest {
     @Test
     public void itShouldCalculateTheArea() {
-        Rectagle rec1 = new Rectagle(2.0,3.0, "anyColor");
+        Rectangle rec1 = new Rectangle(2.0,3.0, "anyColor");
 
-        assertEquals(rec1.getArea(), 6.0);
+        assertEquals(rec1.calculateArea(), 6.0);
     }
 }
