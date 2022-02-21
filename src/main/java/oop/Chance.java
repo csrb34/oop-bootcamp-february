@@ -3,6 +3,10 @@ package oop;
 public class Chance {
 
     public double getProbabilityOfRollingASix() {
-        return 1/6;
+        return (double) 1/6;
+    }
+
+    public double getProbabilityOfNotRollingASix() {
+        return (double) 5/6;
     }
 }
