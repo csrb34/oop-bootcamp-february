@@ -3,6 +3,7 @@ package oop;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertThrows;
 
 public class RectangleTest {
 
@@ -18,5 +19,16 @@ public class RectangleTest {
         var rectangle = new Rectangle(5, 10);
 
         assertEquals(rectangle.calculatePerimeter(), 30);
+    }
+
+    @Test
+    public void itShouldNotAcceptNegativeWidth() {
+        assertThrows(IllegalArgumentException.class, () -> new Rectangle(-5, 10));
+
+    }
+
+    @Test
+    public void itShouldNotAcceptNegativeHeight() {
+        assertThrows(IllegalArgumentException.class, () -> new Rectangle(5, -10));
     }
 }

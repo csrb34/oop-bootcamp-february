@@ -5,6 +5,9 @@ public class Rectangle {
     private final int height;
 
     public Rectangle(int width, int height) {
+        if (width < 0 || height < 0) {
+            throw new IllegalArgumentException("Dimensions cannot be negative");
+        }
         this.width = width;
         this.height = height;
     }
