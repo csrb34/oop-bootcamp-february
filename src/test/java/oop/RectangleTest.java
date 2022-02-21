@@ -16,4 +16,11 @@ public class RectangleTest {
         int result = rectangle.calculatePerimeter();
         assertEquals(result, expectedResults);
     }
+
+    @Test
+    public void calculateAreaThenShouldReturnTheResults() {
+        int expectedResults = 2;
+        int result = rectangle.calculateArea();
+        assertEquals(result, expectedResults);
+    }
 }
