@@ -1,21 +1,19 @@
 package oop;
 
 public class Rectangle {
-    private final Double height;
-    private final Double width;
-    private final String color;
+    private final double height;
+    private final double width;
 
-    public Rectangle(Double height, Double width, String color) {
+    public Rectangle(double height, double width) {
         this.height = height;
         this.width = width;
-        this.color = color;
     }
 
-    public Double calculateArea() {
-        return this.height * this.width;
+    public double calculateArea() {
+        return height * width;
     }
 
-    public Double calculatePerimeter() {
-        return 2 * (this.height + this.width);
+    public double calculatePerimeter() {
+        return 2 * (height + width);
     }
 }
