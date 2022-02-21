@@ -10,4 +10,9 @@ public class HelloWorldTest {
     public void itShouldReturnHelloWorld() {
         assertEquals(HelloWorld.salute(), "hello world!");
     }
+    
+    @Test
+    public void itShould() {
+
+    }
 }
