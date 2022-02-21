@@ -2,11 +2,11 @@ package oop;
 
 public class Chance {
 
-    public double getProbabilityOfRollingASix() {
+    public double calculateProbabilityOfRollingASix() {
         return (double) 1/6;
     }
 
-    public double getProbabilityOfNotRollingASix() {
+    public double calculateProbabilityOfNotRollingASix() {
         return (double) 5/6;
     }
 }

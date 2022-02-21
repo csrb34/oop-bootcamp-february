@@ -8,7 +8,7 @@ public class ChanceTest {
 
     @Test
     public void itShouldReturnTheProbabilityValue() {
-        double result = new Chance().getProbabilityOfRollingASix();
+        double result = new Chance().calculateProbabilityOfRollingASix();
         assertEquals(result, 1.0/6.0);
     }
 
@@ -19,7 +19,7 @@ public class ChanceTest {
 //    Example: P(A) = 0.25  =>  P(!A) = 1 - 0.25 = 0.75
     @Test
     public void itShouldReturnTheProbabilityOfNotGettingASix() {
-        double result = new Chance().getProbabilityOfNotRollingASix();
+        double result = new Chance().calculateProbabilityOfNotRollingASix();
         assertEquals(result, 5.0/6.0);
     }
 
