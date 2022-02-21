@@ -9,21 +9,11 @@ public class Rectangle {
         this.height = height;
     }
 
-    public int getHeight() {
-        return height;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    // Could be in an abstract "Shape" class
-    public int getArea() {
+    public int calculateArea() {
         return width * height;
     }
 
-    // Could be in an abstract "Shape" class
-    public int getPerimeter() {
+    public int calculatePerimeter() {
         return 2 * (width + height);
     }
 }

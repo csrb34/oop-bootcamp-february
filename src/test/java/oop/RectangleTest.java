@@ -2,20 +2,21 @@ package oop;
 
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 public class RectangleTest {
 
     @Test
-    public void testGetArea() {
-        var rectangle = new Rectangle(5,10);
-        assertEquals(rectangle.getArea(),50);
+    public void shouldCalculateArea() {
+        var rectangle = new Rectangle(5, 10);
+
+        assertEquals(rectangle.calculateArea(), 50);
     }
 
     @Test
-    public void testGetPerimeter() {
-        var rectangle = new Rectangle(5,10);
+    public void shouldCalculatePerimeter() {
+        var rectangle = new Rectangle(5, 10);
 
-        assertEquals(rectangle.getPerimeter(),30);
+        assertEquals(rectangle.calculatePerimeter(), 30);
     }
 }
