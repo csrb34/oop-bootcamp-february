@@ -1,6 +1,6 @@
 package oop;
 
-public class DistanceCalculator {
+public class DistanceCalculator extends DistanceConverter{
 
     public DistanceCalculator() {
     }
