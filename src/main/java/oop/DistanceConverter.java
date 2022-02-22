@@ -9,7 +9,7 @@ public class DistanceConverter {
     public DistanceConverter() {
     }
 
-    private double convert(double originalDistanceUnit, String typeOfConversion) {
+    private double converterToUse(double originalDistanceUnit, String typeOfConversion) {
         double convertedValue;
 
         switch (typeOfConversion) {
@@ -41,7 +41,7 @@ public class DistanceConverter {
     }
 
     public boolean isEquivalent(double originalDistanceUnit, double anotherDistanceUnit, String typeOfConversion) {
-        double convertedValue = convert(originalDistanceUnit, typeOfConversion);
+        double convertedValue = converterToUse(originalDistanceUnit, typeOfConversion);
         return (convertedValue == anotherDistanceUnit) ? true : false;
     }
 }
