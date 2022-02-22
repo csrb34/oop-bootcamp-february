@@ -9,13 +9,13 @@ public class ChanceTest {
     @Test
     public void itShouldReturnTheProbabilityValue() {
         double result = new Chance().calculateProbabilityOfRollingASix();
-        assertEquals(result, 1.0/6.0);
+        assertEquals(result, 1.0/6.0, 0.001);
     }
 
     @Test
     public void itShouldReturnTheProbabilityOfNotGettingASix() {
         double result = new Chance().calculateProbabilityOfNotRollingASix();
-        assertEquals(result, 5.0/6.0);
+        assertEquals(result, 5.0/6.0, 0.001);
     }
 
 }

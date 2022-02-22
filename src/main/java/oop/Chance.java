@@ -7,6 +7,6 @@ public class Chance {
     }
 
     public double calculateProbabilityOfNotRollingASix() {
-        return (double) 5/6;
+        return 1 - calculateProbabilityOfRollingASix();
     }
 }
