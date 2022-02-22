@@ -14,4 +14,13 @@ public class ConversionTest {
         Conversion conversion = new Conversion(feet);
         assertEquals(conversion.convertFeetToMetres(), expectedMetres);
     }
+
+    @Test
+    public void itShouldConvertInchesToYards() {
+        double expectedYards = 0.0278;
+        double inches = 1;
+
+        Conversion conversion = new Conversion(inches);
+        assertEquals(conversion.convertInchesToYards(), expectedYards);
+    }
 }
