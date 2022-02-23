@@ -1,7 +1,7 @@
 package oop.car;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 //"A parking lot assistant handles multiple parking lots, parking a car in the first parking lot with space"
 
@@ -12,8 +12,8 @@ import java.util.List;
 public class ParkingAssistant {
     private final List<ParkingLot> parkingLots;
 
-    public ParkingAssistant() {
-        parkingLots = new ArrayList<>();
+    public ParkingAssistant(List<ParkingLot> parkingLotList) {
+        this.parkingLots = parkingLotList;
     }
 
     public void addParkingLot(ParkingLot parkingLot) {

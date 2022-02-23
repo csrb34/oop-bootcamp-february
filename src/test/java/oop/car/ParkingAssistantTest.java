@@ -3,6 +3,8 @@ package oop.car;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -17,21 +19,21 @@ public class ParkingAssistantTest {
 
     @BeforeMethod
     public void setUp() {
-        parkingAssistant = new ParkingAssistant();
         parkingLot = mock(ParkingLot.class);
+        var parkingLotList = new ArrayList<ParkingLot>();
+        parkingLotList.add(parkingLot);
+        parkingAssistant = new ParkingAssistant(parkingLotList);
     }
 
     @Test
     public void itShouldBeAbleToParkACar() {
         when(parkingLot.parkCar(anyInt())).thenReturn(true);
-        parkingAssistant.addParkingLot(parkingLot);
         assertTrue(parkingAssistant.parkCar(5));
     }
 
     @Test
     public void itShouldNotParkACarWhenNoSpaceLeft() {
         when(parkingLot.parkCar(anyInt())).thenReturn(true).thenReturn(false);
-        parkingAssistant.addParkingLot(parkingLot);
         assertTrue(parkingAssistant.parkCar(5));
         assertFalse(parkingAssistant.parkCar(5));
     }
@@ -41,7 +43,6 @@ public class ParkingAssistantTest {
         when(parkingLot.parkCar(anyInt())).thenReturn(false);
         ParkingLot parkingLot2 = mock(ParkingLot.class);
         when(parkingLot2.parkCar(anyInt())).thenReturn(true);
-        parkingAssistant.addParkingLot(parkingLot);
         parkingAssistant.addParkingLot(parkingLot2);
         assertTrue(parkingAssistant.parkCar(5));
     }
