@@ -9,7 +9,7 @@ public class ParkingAssistantTest {
     private final Car myCar = new Car();
 
     @Test
-    public void itShouldBeAbleToParkACarByAnAssistant() {
+    public void itShouldBeAbleToParkACar() {
         var assistant = new ParkingAssistant();
 
         assistant.park(myCar);
