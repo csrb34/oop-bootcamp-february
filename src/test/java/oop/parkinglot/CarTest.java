@@ -1,24 +1,29 @@
 package oop.parkinglot;
 
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
 public class CarTest {
 
+    Car car;
+
+    @BeforeTest
+    public void setUp() {
+        car = new Car();
+    }
+
     @Test
     public void itShouldParkMyCar() {
-        var car = new Car();
-
         car.park();
 
         assertTrue(car.isParked());
     }
 
     @Test
-    public void itShouldRetrieveMyCar() {
-        var car = new Car();
-
+    public void itShouldRetrieveMyCarWhichIsParked() {
+        car.park();
         car.retrieve();
 
         assertFalse(car.isParked());
