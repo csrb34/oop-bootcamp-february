@@ -22,4 +22,13 @@ public class ParkingLotTest {
         assertFalse(parkingLot.parkCar(12));
     }
 
+    @Test
+    public void itShouldFailIfTheCapacityIsReached() {
+        parkingLot = new ParkingLot(10);
+        for (int i = 0; i < 8; i++) {
+            parkingLot.parkCar(i);
+        }
+        assertFalse(parkingLot.parkCar(9));
+    }
+
 }
