@@ -12,17 +12,20 @@ import static org.testng.Assert.assertEquals;
 
 public class ParkingAssistantTest {
 
-    private  Car myCar;
+    private Car myCar;
+    private NotificationSender notificationSender;
+
 
     @BeforeMethod
     public void setUp() {
         myCar = Mockito.mock(Car.class);
+        notificationSender = Mockito.mock(NotificationSender.class);
     }
 
     @Test
     public void itShouldParkACarInAParkingLotWhenOcupationIsLessThan80Percent() {
 
-        final List<ParkingLot> parkingLots = List.of(new ParkingLot(1,10, 5));
+        final List<ParkingLot> parkingLots = List.of(new ParkingLot(1, 10, 5, notificationSender));
         var assistant = new ParkingAssistant(parkingLots);
 
         assistant.park(myCar);
@@ -32,7 +35,7 @@ public class ParkingAssistantTest {
 
     @Test
     public void itShouldNotParkACarParkingIsMoreThan80PercentFull() {
-        final List<ParkingLot> parkingLots = List.of(new ParkingLot(1,10, 1));
+        final List<ParkingLot> parkingLots = List.of(new ParkingLot(1, 10, 1, notificationSender));
 
         var assistant = new ParkingAssistant(parkingLots);
 
@@ -44,7 +47,14 @@ public class ParkingAssistantTest {
     @Test
     public void itShouldParkACarInTheSecondAParkingLot() {
 
-        final List<ParkingLot> parkingLots = List.of(new ParkingLot(1,6, 1), new ParkingLot(2,10,10));
+        final List<ParkingLot> parkingLots = List.of(new ParkingLot(1,
+                6,
+                1,
+                notificationSender),
+            new ParkingLot(2,
+                10,
+                10,
+                notificationSender));
         var assistant = new ParkingAssistant(parkingLots);
 
         final var parkingLotId = assistant.park(myCar);
