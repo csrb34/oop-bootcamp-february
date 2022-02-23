@@ -3,7 +3,8 @@ package oop.car;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.*;
+
 
 public class ParkingLotTest {
 
@@ -19,5 +20,19 @@ public class ParkingLotTest {
         parkingLot.parkCar(5);
         assertEquals(parkingLot.getParkedCars().size(), 1);
         assertEquals(parkingLot.getParkedCars().get(0), 5);
+    }
+
+    @Test
+    public void itShouldRetrieveMyCar() {
+        parkingLot.parkCar(6);
+        var carIsRetrieved = parkingLot.retrieveCar(6);
+        assertTrue(carIsRetrieved);
+    }
+
+    @Test
+    public void itShouldFailWhenRetrievingANotExistingCar() {
+        parkingLot.parkCar(6);
+        var carIsRetrieved = parkingLot.retrieveCar(5);
+        assertFalse(carIsRetrieved);
     }
 }

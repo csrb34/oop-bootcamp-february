@@ -17,4 +17,12 @@ public class ParkingLot {
     public List<Integer> getParkedCars() {
         return parkedCars;
     }
+
+    public boolean retrieveCar(int carId) {
+        if (parkedCars.contains(carId)) {
+            parkedCars.remove((Integer) carId);
+            return true;
+        }
+        return false;
+    }
 }
