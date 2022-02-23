@@ -7,6 +7,8 @@ import java.util.List;
 
 //A parking lot assistant handles multiple parking lots, parking a car in the first parking lot with space"
 //"A parking lot assistant parks a car in a parking lot only if it is less than 80% full"
+
+//"I (owner) want to be notified when a parking lot usage is over 75% so that I can buy more land"
 public class ParkingAssistant {
     private final List<ParkingLot> parkingLots;
 
