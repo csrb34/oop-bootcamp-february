@@ -5,36 +5,24 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ParkingAssistant {
 
-    private final List<Integer> parkingLotsFreeSpots;
-    private final List<Integer> parkingInitialCapacity;
+    private final List<ParkingLot> parkingLots;
 
-
-    public ParkingAssistant(List<Integer> parkingLotsFreeSpots, List<Integer> parkingInitialCapacity) {
-        this.parkingLotsFreeSpots = parkingLotsFreeSpots;
-        this.parkingInitialCapacity = parkingInitialCapacity;
+    public ParkingAssistant(List<ParkingLot> parkingLots) {
+        this.parkingLots = parkingLots;
     }
 
-    public void park(Car car) {
-        var parkingLotIndex = new AtomicInteger(-1);
-        var space = parkingLotsFreeSpots.stream()
-            .peek(x -> parkingLotIndex.getAndIncrement())
-            .filter(availableSpotsForLot -> hasCapacity(availableSpotsForLot, parkingLotIndex))
-            .findFirst();
-        if (space.isPresent()) {
-            car.park();
-            parkingLotsFreeSpots.set(parkingLotIndex.get(), space.get() - 1);
-        }
+    public int park(Car car) {
+        return parkingLots.stream()
+            .filter(this::hasCapacity)
+            .findFirst().map(parkingLot -> {
+                car.park();
+                parkingLot.fillSpot();
+                return parkingLot.getId();
+            }).orElse(-1);
     }
 
-    private boolean hasCapacity(Integer availableSpotsForLot, AtomicInteger parkingLotIndex) {
-        var initialLotCapacity = parkingInitialCapacity.get(parkingLotIndex.get());
-        final var availabilityPercentage = availableSpotsForLot.doubleValue() / initialLotCapacity.doubleValue();
-        return availabilityPercentage >= 0.2;
-
-    }
-
-    public List<Integer> getParkingLotsFreeSpots() {
-        return parkingLotsFreeSpots;
+    private boolean hasCapacity(ParkingLot parkingLot) {
+        return parkingLot.getAvailabilityPercentage() >= 0.2;
     }
 
 }

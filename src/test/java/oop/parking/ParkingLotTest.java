@@ -5,15 +5,25 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 public class ParkingLotTest {
+
+    public static final double DELTA = 0.01;
+
     @Test
     public void itShouldReturnOccupationPercentage() {
-        ParkingLot parkingLot = new ParkingLot(10,10);
-        assertEquals(parkingLot.getOccupationPercentage(), 1d, 1);
+        ParkingLot parkingLot = new ParkingLot(1,10,10);
+        assertEquals(parkingLot.getAvailabilityPercentage(), 1d, DELTA);
     }
 
     @Test
     public void itShouldReturnOccupationPercentageForHalfOccupation() {
-        ParkingLot parkingLot = new ParkingLot(10,5);
-        assertEquals(parkingLot.getOccupationPercentage(), 0.5d, 0.1);
+        ParkingLot parkingLot = new ParkingLot(1,10,5);
+        assertEquals(parkingLot.getAvailabilityPercentage(), 0.5d, DELTA);
+    }
+
+    @Test
+    public void itShouldDecreaseTheAvailableSpotsInOneUnit() {
+        ParkingLot parkingLot = new ParkingLot(1,10,5);
+        parkingLot.fillSpot();
+        assertEquals(parkingLot.getAvailabilityPercentage(), 0.4d, DELTA);
     }
 }

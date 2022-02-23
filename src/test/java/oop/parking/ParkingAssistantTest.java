@@ -22,23 +22,20 @@ public class ParkingAssistantTest {
 
     @Test
     public void itShouldParkACarInAParkingLotWhenOcupationIsLessThan80Percent() {
-        final List<Integer> parkingLotsFreeSpots =  Arrays.asList(5);
-        final List<Integer> parkingInitialCapacity =  Arrays.asList(10);
-        var assistant = new ParkingAssistant(parkingLotsFreeSpots, parkingInitialCapacity);
+
+        final List<ParkingLot> parkingLots = List.of(new ParkingLot(1,10, 5));
+        var assistant = new ParkingAssistant(parkingLots);
 
         assistant.park(myCar);
-
-        assertEquals(assistant.getParkingLotsFreeSpots(), Arrays.asList(4));
         verify(myCar).park();
 
     }
 
     @Test
     public void itShouldNotParkACarParkingIsMoreThan80PercentFull() {
-        final List<Integer> parkingLotsFreeSpots =  Arrays.asList(1);
-        final List<Integer> parkingInitialCapacity =  Arrays.asList(10);
+        final List<ParkingLot> parkingLots = List.of(new ParkingLot(1,10, 1));
 
-        var assistant = new ParkingAssistant(parkingLotsFreeSpots, parkingInitialCapacity);
+        var assistant = new ParkingAssistant(parkingLots);
 
         assistant.park(myCar);
 
@@ -47,13 +44,13 @@ public class ParkingAssistantTest {
 
     @Test
     public void itShouldParkACarInTheSecondAParkingLot() {
-        final List<Integer> parkingLotsFreeSpots =  Arrays.asList(1, 5);
-        final List<Integer> parkingInitialCapacity =  Arrays.asList(10, 10);
-        var assistant = new ParkingAssistant(parkingLotsFreeSpots, parkingInitialCapacity);
 
-        assistant.park(myCar);
+        final List<ParkingLot> parkingLots = List.of(new ParkingLot(1,6, 1), new ParkingLot(2,10,10));
+        var assistant = new ParkingAssistant(parkingLots);
 
-        assertEquals(assistant.getParkingLotsFreeSpots(), Arrays.asList(1, 4));
+        final var parkingLotId = assistant.park(myCar);
+
+        assertEquals(parkingLotId, 2);
         verify(myCar).park();
 
     }
