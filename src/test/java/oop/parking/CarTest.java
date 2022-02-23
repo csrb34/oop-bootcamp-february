@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class CarTest {
 
-    Car car;
+    private Car car;
 
     @BeforeTest
     public void setUp() {

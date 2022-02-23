@@ -1,18 +1,20 @@
 package oop.parking;
 
+import org.mockito.Mockito;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertTrue;
+import static org.mockito.Mockito.verify;
 
 public class ParkingAssistantTest {
 
-    private final Car myCar = new Car();
+    private final Car myCar = Mockito.mock(Car.class);
 
     @Test
     public void itShouldBeAbleToParkACar() {
         var assistant = new ParkingAssistant();
 
         assistant.park(myCar);
-        assertTrue(myCar.isParked());
+
+        verify(myCar).park();
     }
 }
