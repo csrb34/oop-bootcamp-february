@@ -5,6 +5,7 @@ plugins {
 dependencies {
     implementation 'com.google.guava:guava:31.0.1-jre'
     implementation 'org.testng:testng:7.5'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.1.0'
 }
 
 repositories {

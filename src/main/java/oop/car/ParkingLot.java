@@ -4,21 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingLot {
+    private final int numberOfSpaces;
     private final List<Integer> parkedCars;
 
-    public ParkingLot() {
-        parkedCars = new ArrayList<>();
+    public ParkingLot(int numberOfSpaces) {
+        this.numberOfSpaces = numberOfSpaces;
+        this.parkedCars = new ArrayList<>(numberOfSpaces);
     }
 
-    public void parkCar(int carId) {
+    public boolean parkCar(int carId) {
+        if (parkedCars.size() >= numberOfSpaces) {
+            return false;
+        }
         parkedCars.add(carId);
-    }
-
-    public List<Integer> getParkedCars() {
-        return parkedCars;
-    }
-
-    public boolean retrieveCar(int carId) {
-        return parkedCars.remove((Integer) carId);
+        return true;
     }
 }
