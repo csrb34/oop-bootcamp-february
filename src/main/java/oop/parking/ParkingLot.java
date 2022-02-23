@@ -18,8 +18,4 @@ public class ParkingLot {
     public void fillSpot() {
         freeSpots -= 1;
     }
-
-    public int getId() {
-        return id;
-    }
 }
