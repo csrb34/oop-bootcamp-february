@@ -3,7 +3,9 @@ package oop.car;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 
 public class ParkingLotTest {
@@ -31,7 +33,6 @@ public class ParkingLotTest {
 
     @Test
     public void itShouldFailWhenRetrievingANotExistingCar() {
-        parkingLot.parkCar(6);
         var carIsRetrieved = parkingLot.retrieveCar(5);
         assertFalse(carIsRetrieved);
     }
