@@ -3,7 +3,11 @@ package oop.parking;
 import org.mockito.Mockito;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.mockito.Mockito.verify;
+import static org.testng.Assert.assertEquals;
 
 public class ParkingAssistantTest {
 
@@ -11,10 +15,22 @@ public class ParkingAssistantTest {
 
     @Test
     public void itShouldBeAbleToParkACar() {
-        var assistant = new ParkingAssistant();
+        final List<Integer> parkingLotsFreeSpots = Arrays.asList(1);
+        var assistant = new ParkingAssistant(parkingLotsFreeSpots);
 
         assistant.park(myCar);
 
         verify(myCar).park();
+    }
+
+    @Test
+    public void itShouldParkACarInAParkingLot() {
+        final List<Integer> parkingLotsFreeSpots =  Arrays.asList(10);
+        var assistant = new ParkingAssistant(parkingLotsFreeSpots);
+
+        assistant.park(myCar);
+
+        assertEquals(assistant.getParkingLotsFreeSpots(), List.of(9));
+
     }
 }
