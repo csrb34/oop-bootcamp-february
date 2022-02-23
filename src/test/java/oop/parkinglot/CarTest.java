@@ -5,9 +5,9 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class CarParkingTest {
+public class CarTest {
     @Test
-    public void itShouldParkACarAParkingLot() {
+    public void itShouldParkACarInAParkingLot() {
         var parkingLot = new ParkingLot();
         var car = new Car();
 
