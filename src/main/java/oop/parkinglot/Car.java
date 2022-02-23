@@ -7,8 +7,7 @@ public class Car {
         return parked;
     }
 
-    public void park(ParkingLot parkingLot) {
-        parked = true;
-        parkingLot.addParkedVehicle();
-    }
+    public void park() { parked = true; }
+
+    public void retrieve() { parked = false; }
 }

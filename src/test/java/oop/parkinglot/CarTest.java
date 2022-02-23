@@ -2,18 +2,25 @@ package oop.parkinglot;
 
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 public class CarTest {
+
     @Test
-    public void itShouldParkACarInAParkingLot() {
-        var parkingLot = new ParkingLot();
+    public void itShouldParkMyCar() {
         var car = new Car();
 
-        car.park(parkingLot);
+        car.park();
 
         assertTrue(car.isParked());
-        assertEquals(parkingLot.vehicleParked(), 1);
+    }
+
+    @Test
+    public void itShouldRetrieveMyCar() {
+        var car = new Car();
+
+        car.retrieve();
+
+        assertFalse(car.isParked());
     }
 }
