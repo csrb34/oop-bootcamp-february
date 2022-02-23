@@ -1,4 +1,4 @@
-package oop.parkinglot;
+package oop.parking;
 
 public class Car {
     private boolean parked;
