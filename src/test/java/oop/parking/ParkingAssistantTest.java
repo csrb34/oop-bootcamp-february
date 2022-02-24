@@ -63,4 +63,22 @@ public class ParkingAssistantTest {
         verify(myCar).park();
 
     }
+
+    @Test
+    public void itShouldParkLargeCarsInParkingLotLessOccupied() {
+
+        final List<ParkingLot> parkingLots = List.of(new ParkingLot(1,
+                        10,
+                        5,
+                        notificationSender),
+                new ParkingLot(2,
+                        10,
+                        2,
+                        notificationSender));
+        var assistant = new ParkingAssistant(parkingLots);
+        var car = new Car("large");
+        final var parkingLotId = assistant.park(car);
+
+        assertEquals(parkingLotId, 2);
+    }
 }

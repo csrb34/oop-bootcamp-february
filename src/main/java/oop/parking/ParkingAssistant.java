@@ -1,6 +1,7 @@
 package oop.parking;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ParkingAssistant {
 
@@ -11,17 +12,39 @@ public class ParkingAssistant {
     }
 
     public int park(Car car) {
-        return parkingLots.stream()
-            .filter(this::hasEnoughCapacity)
-            .findFirst().map(parkingLot -> {
+        if (car.isLarge()) {
+            var parkingLotSelected = searchTheLeastOccupiedParkingLot();
+            if(!Objects.isNull(parkingLotSelected)){
                 car.park();
-                parkingLot.fillSpot();
-                return parkingLot.getId();
-            }).orElse(-1);
+                return parkingLotSelected.getId();
+            }
+            return -1;
+        }
+
+        return parkingLots.stream()
+                .filter(this::hasEnoughCapacity)
+                .findFirst().map(parkingLot -> {
+                    car.park();
+                    parkingLot.fillSpot();
+                    return parkingLot.getId();
+                }).orElse(-1);
     }
 
     private boolean hasEnoughCapacity(ParkingLot parkingLot) {
         return parkingLot.calculateOccupancyPercentage() < 0.8;
     }
+
+    public ParkingLot searchTheLeastOccupiedParkingLot() {
+        var percentageOccupancy = 1;
+        ParkingLot parkingLotSelected = null;
+        for (ParkingLot lot : parkingLots) {
+            if (hasEnoughCapacity(lot) && lot.calculateOccupancyPercentage() < percentageOccupancy) {
+                parkingLotSelected = lot;
+            }
+        }
+        return parkingLotSelected;
+    }
+
+
 
 }
