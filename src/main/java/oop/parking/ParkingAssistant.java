@@ -12,7 +12,7 @@ public class ParkingAssistant {
 
     public int park(Car car) {
         return parkingLots.stream()
-            .filter(this::hasCapacity)
+            .filter(this::hasEnoughCapacity)
             .findFirst().map(parkingLot -> {
                 car.park();
                 parkingLot.fillSpot();
@@ -20,8 +20,8 @@ public class ParkingAssistant {
             }).orElse(-1);
     }
 
-    private boolean hasCapacity(ParkingLot parkingLot) {
-        return parkingLot.getAvailabilityPercentage() >= 0.2;
+    private boolean hasEnoughCapacity(ParkingLot parkingLot) {
+        return parkingLot.calculateOccupancyPercentage() < 0.8;
     }
 
 }

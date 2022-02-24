@@ -20,33 +20,33 @@ public class ParkingLotTest {
     }
     @Test
     public void itShouldReturnOccupationPercentage() {
-        ParkingLot parkingLot = new ParkingLot(1,10,10, notificationSender);
-        assertEquals(parkingLot.getAvailabilityPercentage(), 1d, DELTA);
+        ParkingLot parkingLot = new ParkingLot(1,10,1, notificationSender);
+        assertEquals(parkingLot.calculateOccupancyPercentage(), 0.1d, DELTA);
     }
 
     @Test
     public void itShouldReturnOccupationPercentageForHalfOccupation() {
         ParkingLot parkingLot = new ParkingLot(1,10,5, notificationSender);
-        assertEquals(parkingLot.getAvailabilityPercentage(), 0.5d, DELTA);
+        assertEquals(parkingLot.calculateOccupancyPercentage(), 0.5d, DELTA);
     }
 
     @Test
     public void itShouldDecreaseTheAvailableSpotsInOneUnit() {
         ParkingLot parkingLot = new ParkingLot(1,10,5, notificationSender);
         parkingLot.fillSpot();
-        assertEquals(parkingLot.getAvailabilityPercentage(), 0.4d, DELTA);
+        assertEquals(parkingLot.calculateOccupancyPercentage(), 0.6d, DELTA);
     }
 
     @Test
     public void itShouldShouldNotifyWhenOccupationIsOver75Percent() {
-        ParkingLot parkingLot = new ParkingLot(1,5,2, notificationSender);
+        ParkingLot parkingLot = new ParkingLot(1,4,2, notificationSender);
         parkingLot.fillSpot();
         verify(notificationSender).notifyOverUsed(parkingLot.getId());
     }
 
     @Test
     public void itShouldShouldNotifyWhenOccupationIsLessThan20Percent() {
-        ParkingLot parkingLot = new ParkingLot(1,10,9, notificationSender);
+        ParkingLot parkingLot = new ParkingLot(1,10,1, notificationSender);
         parkingLot.fillSpot();
         verify(notificationSender).notifyMisused(parkingLot.getId());
     }

@@ -23,7 +23,7 @@ public class ParkingAssistantTest {
     }
 
     @Test
-    public void itShouldParkACarInAParkingLotWhenOcupationIsLessThan80Percent() {
+    public void itShouldParkACarInAParkingLotWhenOccupationIsLessThan80Percent() {
 
         final List<ParkingLot> parkingLots = List.of(new ParkingLot(1, 10, 5, notificationSender));
         var assistant = new ParkingAssistant(parkingLots);
@@ -35,7 +35,7 @@ public class ParkingAssistantTest {
 
     @Test
     public void itShouldNotParkACarParkingIsMoreThan80PercentFull() {
-        final List<ParkingLot> parkingLots = List.of(new ParkingLot(1, 10, 1, notificationSender));
+        final List<ParkingLot> parkingLots = List.of(new ParkingLot(1, 10, 8, notificationSender));
 
         var assistant = new ParkingAssistant(parkingLots);
 
@@ -49,11 +49,11 @@ public class ParkingAssistantTest {
 
         final List<ParkingLot> parkingLots = List.of(new ParkingLot(1,
                 6,
-                1,
+                5,
                 notificationSender),
             new ParkingLot(2,
                 10,
-                10,
+                0,
                 notificationSender));
         var assistant = new ParkingAssistant(parkingLots);
 
