@@ -92,4 +92,6 @@ public class ParkingAssistantTest {
     public void itShouldNotParkFancyCarIfNotCertified() {
         assertFalse(parkingAssistant.parkCar(2,true));
     }
+
+
 }
