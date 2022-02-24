@@ -16,6 +16,7 @@ public class ParkingAssistant {
             var parkingLotSelected = searchTheLeastOccupiedParkingLot();
             if(!Objects.isNull(parkingLotSelected)){
                 car.park();
+                parkingLotSelected.fillSpot();
                 return parkingLotSelected.getId();
             }
             return -1;
@@ -35,10 +36,11 @@ public class ParkingAssistant {
     }
 
     public ParkingLot searchTheLeastOccupiedParkingLot() {
-        var percentageOccupancy = 1;
+        double percentageOccupancy = 1;
         ParkingLot parkingLotSelected = null;
         for (ParkingLot lot : parkingLots) {
             if (hasEnoughCapacity(lot) && lot.calculateOccupancyPercentage() < percentageOccupancy) {
+                percentageOccupancy = lot.calculateOccupancyPercentage();
                 parkingLotSelected = lot;
             }
         }
