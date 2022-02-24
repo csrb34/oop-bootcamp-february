@@ -4,6 +4,7 @@ public class ParkingLot {
     private final int id;
     private final int totalCapacity;
     private int freeSpots;
+
     private final NotificationSender notificationSender;
 
     public ParkingLot(int id,
@@ -24,6 +25,9 @@ public class ParkingLot {
         freeSpots -= 1;
         if (getAvailabilityPercentage() < 0.25) {
             notificationSender.notifyOverUsed(id);
+        }
+        if (getAvailabilityPercentage() >= 0.80) {
+            notificationSender.notifyMisused(id);
         }
     }
 

@@ -1,6 +1,7 @@
 package oop.parking;
 
 import org.mockito.Mockito;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.mockito.Mockito.verify;
@@ -10,9 +11,13 @@ public class ParkingLotTest {
 
     public static final double DELTA = 0.01;
 
+    private NotificationSender notificationSender;
 
-    private final NotificationSender notificationSender = Mockito.mock(NotificationSender.class);
 
+    @BeforeMethod
+    public void setUp() {
+        notificationSender = Mockito.mock(NotificationSender.class);
+    }
     @Test
     public void itShouldReturnOccupationPercentage() {
         ParkingLot parkingLot = new ParkingLot(1,10,10, notificationSender);
@@ -37,5 +42,12 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot(1,5,2, notificationSender);
         parkingLot.fillSpot();
         verify(notificationSender).notifyOverUsed(parkingLot.getId());
+    }
+
+    @Test
+    public void itShouldShouldNotifyWhenOccupationIsLessThan20Percent() {
+        ParkingLot parkingLot = new ParkingLot(1,10,9, notificationSender);
+        parkingLot.fillSpot();
+        verify(notificationSender).notifyMisused(parkingLot.getId());
     }
 }
