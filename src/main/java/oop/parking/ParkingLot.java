@@ -4,6 +4,7 @@ public class ParkingLot {
     private final int id;
     private final int totalCapacity;
     private int occupiedSpots;
+    private boolean handicappedSpot;
 
     private final NotificationSender notificationSender;
 
@@ -15,6 +16,16 @@ public class ParkingLot {
         this.totalCapacity = totalCapacity;
         this.occupiedSpots = occupiedSpots;
         this.notificationSender = notificationSender;
+        this.handicappedSpot = false;
+    }
+
+    public ParkingLot(int id,
+                      int totalCapacity,
+                      int occupiedSpots,
+                      NotificationSender notificationSender,
+                      boolean handicappedSpot) {
+        this(id, totalCapacity, occupiedSpots, notificationSender);
+        this.handicappedSpot = handicappedSpot;
     }
 
     public double calculateOccupancyPercentage() {
@@ -34,4 +45,9 @@ public class ParkingLot {
     public int getId() {
         return id;
     }
+
+    public boolean isThereHandicappedSpot() {
+        return handicappedSpot;
+    }
+
 }

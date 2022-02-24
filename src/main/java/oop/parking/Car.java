@@ -26,4 +26,8 @@ public class Car {
     public boolean isLarge(){
         return "large" == type;
     }
+
+    public boolean isHandicapped() {
+            return "handicapped" == type;
+    }
 }

@@ -81,4 +81,22 @@ public class ParkingAssistantTest {
 
         assertEquals(parkingLotId, 2);
     }
+
+    @Test
+    public void itShouldParkHandicappedCarInTheFirstHandicappedParkingLot() {
+        final List<ParkingLot> parkingLots = List.of(new ParkingLot(1,
+                        10,
+                        5,
+                        notificationSender),
+                new ParkingLot(2,
+                        10,
+                        2,
+                        notificationSender,
+                        true));
+        var assistant = new ParkingAssistant(parkingLots);
+        var car = new Car("handicapped");
+        final var parkingLotId = assistant.park(car);
+
+        assertEquals(parkingLotId, 2);
+    }
 }

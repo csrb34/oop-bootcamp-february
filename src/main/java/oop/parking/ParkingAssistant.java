@@ -15,7 +15,9 @@ public class ParkingAssistant {
         ParkingLot parkingLotSelected;
         if (car.isLarge()) {
             parkingLotSelected = searchTheLeastOccupiedParkingLot();
-        } else {
+        } else if (car.isHandicapped()){
+            parkingLotSelected = searchTheFirstHandicappedParkingLot();
+        }  else {
             parkingLotSelected = searchTheFirstParkingLotWithEnoughCapacity();
         }
         if (!Objects.isNull(parkingLotSelected)) {
@@ -50,5 +52,10 @@ public class ParkingAssistant {
                 .findFirst().orElse(null);
     }
 
+    private ParkingLot searchTheFirstHandicappedParkingLot() {
+        return parkingLots.stream()
+                .filter(parkingLot -> parkingLot.isThereHandicappedSpot())
+                .findFirst().orElse(null);
+    }
 
 }
