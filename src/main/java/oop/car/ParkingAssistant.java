@@ -5,9 +5,15 @@ import java.util.List;
 
 public class ParkingAssistant {
     private final List<ParkingLot> commonParkingLots;
+    private boolean certified = false;
 
     public ParkingAssistant(List<ParkingLot> commonParkingLotList) {
         this.commonParkingLots = commonParkingLotList;
+    }
+
+    public ParkingAssistant(List<ParkingLot> commonParkingLotList, boolean certified) {
+        this.commonParkingLots = commonParkingLotList;
+        this.certified = certified;
     }
 
     public void addParkingLot(ParkingLot commonParkingLot) {
@@ -15,6 +21,13 @@ public class ParkingAssistant {
     }
 
     public boolean parkCar(int carId) {
+        return parkCar(carId, false);
+    }
+
+    public boolean parkCar(int carId, boolean isFancy) {
+        if (isFancy && !this.certified) {
+            return false;
+        } 
         for (ParkingLot parkingLot : commonParkingLots) {
             if (parkingLot.parkIn(carId)) {
                 return true;

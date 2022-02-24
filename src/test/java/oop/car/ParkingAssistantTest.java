@@ -78,4 +78,18 @@ public class ParkingAssistantTest {
     public void itShouldNotParkCommonCarInAHandicapCarSlot() {
         assertFalse(parkingAssistant.parkHandicapCar(5));
     }
+
+    @Test
+    public void itShouldParkFancyCarIfCertified() {
+        when(commonParkingLot.parkIn(anyInt())).thenReturn(true);
+        var parkingLotList = new ArrayList<ParkingLot>();
+        parkingLotList.add(commonParkingLot);
+        parkingAssistant = new ParkingAssistant(parkingLotList, true);
+        assertTrue(parkingAssistant.parkCar(2, true));
+    }
+
+    @Test
+    public void itShouldNotParkFancyCarIfNotCertified() {
+        assertFalse(parkingAssistant.parkCar(2,true));
+    }
 }
