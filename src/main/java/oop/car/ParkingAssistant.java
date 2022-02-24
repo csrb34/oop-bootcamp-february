@@ -1,7 +1,6 @@
 package oop.car;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 //"A parking lot assistant handles multiple parking lots, parking a car in the first parking lot with space"
 
@@ -22,7 +21,7 @@ public class ParkingAssistant {
 
     public boolean parkCar(int carId) {
         for (ParkingLot parkingLot : parkingLots) {
-            if (parkingLot.parkCar(carId)) {
+            if (parkingLot.parkIn(carId)) {
                 return true;
             }
         }

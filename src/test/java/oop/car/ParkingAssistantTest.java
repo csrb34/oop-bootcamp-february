@@ -27,23 +27,32 @@ public class ParkingAssistantTest {
 
     @Test
     public void itShouldBeAbleToParkACar() {
-        when(parkingLot.parkCar(anyInt())).thenReturn(true);
+        when(parkingLot.parkIn(anyInt())).thenReturn(true);
         assertTrue(parkingAssistant.parkCar(5));
     }
 
     @Test
     public void itShouldNotParkACarWhenNoSpaceLeft() {
-        when(parkingLot.parkCar(anyInt())).thenReturn(true).thenReturn(false);
+        when(parkingLot.parkIn(anyInt())).thenReturn(true).thenReturn(false);
         assertTrue(parkingAssistant.parkCar(5));
         assertFalse(parkingAssistant.parkCar(5));
     }
 
     @Test
     public void itShouldParkACarOnAvailableParkingSlot() {
-        when(parkingLot.parkCar(anyInt())).thenReturn(false);
+        when(parkingLot.parkIn(anyInt())).thenReturn(false);
         ParkingLot parkingLot2 = mock(ParkingLot.class);
-        when(parkingLot2.parkCar(anyInt())).thenReturn(true);
+        when(parkingLot2.parkIn(anyInt())).thenReturn(true);
         parkingAssistant.addParkingLot(parkingLot2);
         assertTrue(parkingAssistant.parkCar(5));
+    }
+
+    @Test
+    public void itShouldParkLargeCarOnLessPercentageParkingSlot() {
+        when(parkingLot.parkIn(anyInt())).thenReturn(true);
+        ParkingLot parkingLot2 = mock(ParkingLot.class);
+        when(parkingLot2.parkIn(anyInt())).thenReturn(true);
+        parkingAssistant.addParkingLot(parkingLot2);
+        //assertTrue(parkingAssistant.parkLargeCar(5));
     }
 }

@@ -23,7 +23,7 @@ public class ParkingLot {
         this.notifyLowCapacityThreshold = (int) (NOTIFY_LOW_CAPACITY_PERCENTAGE * numberOfSpaces);
     }
 
-    public boolean parkCar(int carId) {
+    public boolean parkIn(int carId) {
         if (parkedCars.size() >= notifyTopCapacityThreshold) {
             parkingListener.notifyMaxCapacity(parkingName);
         }
@@ -32,5 +32,20 @@ public class ParkingLot {
         }
         parkedCars.add(carId);
         return true;
+    }
+
+    public boolean parkOut(int cardId) {
+        if (parkedCars.contains(cardId)) {
+            parkedCars.remove(Integer.valueOf(cardId));
+            if (parkedCars.size() < notifyLowCapacityThreshold) {
+                parkingListener.notifyMinCapacity(parkingName);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public double calculateOccupancy() {
+        return (double) parkedCars.size() / maxCapacity;
     }
 }
