@@ -17,7 +17,7 @@ public class ParkingAssistantManager extends ParkingAssistant {
         return assistantsList;
     }
 
-    public void hire() {
-        this.assistantsList.add(new ParkingAssistant(List.of(), false));
+    public void hire(List<ParkingLot> parkingLots, boolean certified) {
+        this.assistantsList.add(new ParkingAssistant(parkingLots, certified));
     }
 }

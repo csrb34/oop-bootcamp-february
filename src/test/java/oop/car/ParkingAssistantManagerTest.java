@@ -11,7 +11,7 @@ public class ParkingAssistantManagerTest {
     public void itShouldHireAnAssistant() {
         List<ParkingLot> parkingLots = List.of();
         ParkingAssistantManager parkingAssistantManagerManager = new ParkingAssistantManager(parkingLots, false);
-        parkingAssistantManagerManager.hire();
+        parkingAssistantManagerManager.hire(parkingLots, false);
         assertEquals(parkingAssistantManagerManager.getAssistantsList().size(), 1);
     }
 
