@@ -2,8 +2,8 @@ package oop.car;
 
 import java.util.ArrayList;
 import java.util.List;
-//"I (owner) want to be notified when parking lot usage is less than 20% so that I can close down some parkings"
-public class ParkingLot {
+
+public abstract class ParkingLot {
     public static final double MAX_CAPACITY_PERCENTAGE = 0.8;
     public static final double NOTIFY_TOP_CAPACITY_PERCENTAGE = 0.75;
     public static final double NOTIFY_LOW_CAPACITY_PERCENTAGE = 0.20;
@@ -48,4 +48,6 @@ public class ParkingLot {
     public double calculateOccupancy() {
         return (double) parkedCars.size() / maxCapacity;
     }
+
+    protected abstract boolean isHandicapLot();
 }
