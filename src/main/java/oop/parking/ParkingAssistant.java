@@ -12,30 +12,27 @@ public class ParkingAssistant {
     }
 
     public int park(Car car) {
+        ParkingLot parkingLotSelected = null;
         if (car.isLarge()) {
-            var parkingLotSelected = searchTheLeastOccupiedParkingLot();
-            if(!Objects.isNull(parkingLotSelected)){
-                car.park();
-                parkingLotSelected.fillSpot();
-                return parkingLotSelected.getId();
-            }
-            return -1;
+            parkingLotSelected = searchTheLeastOccupiedParkingLot();
+        } else {
+            parkingLotSelected = searchTheFirstParkingLotWithEnoughCapacity();
         }
-
-        return parkingLots.stream()
-                .filter(this::hasEnoughCapacity)
-                .findFirst().map(parkingLot -> {
-                    car.park();
-                    parkingLot.fillSpot();
-                    return parkingLot.getId();
-                }).orElse(-1);
+        if (!Objects.isNull(parkingLotSelected)) {
+            car.park();
+            parkingLotSelected.fillSpot();
+            return parkingLotSelected.getId();
+        }
+        return -1;
     }
+
+
 
     private boolean hasEnoughCapacity(ParkingLot parkingLot) {
         return parkingLot.calculateOccupancyPercentage() < 0.8;
     }
 
-    public ParkingLot searchTheLeastOccupiedParkingLot() {
+    private ParkingLot searchTheLeastOccupiedParkingLot() {
         double percentageOccupancy = 1;
         ParkingLot parkingLotSelected = null;
         for (ParkingLot lot : parkingLots) {
@@ -47,6 +44,11 @@ public class ParkingAssistant {
         return parkingLotSelected;
     }
 
+    private ParkingLot searchTheFirstParkingLotWithEnoughCapacity() {
+        return parkingLots.stream()
+                .filter(this::hasEnoughCapacity)
+                .findFirst().orElse(null);
+    }
 
 
 }
