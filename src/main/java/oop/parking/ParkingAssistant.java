@@ -12,7 +12,7 @@ public class ParkingAssistant {
     }
 
     public int park(Car car) {
-        ParkingLot parkingLotSelected = null;
+        ParkingLot parkingLotSelected;
         if (car.isLarge()) {
             parkingLotSelected = searchTheLeastOccupiedParkingLot();
         } else {
