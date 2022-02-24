@@ -37,7 +37,22 @@ public class ParkingLotTest {
     public void itShouldNotifyOwnerWhenAlmostFull() {
         parkingLot = new ParkingLot(10, parkingListener, "PARKING_1");
         parkMultipleCars(8);
-        verify(parkingListener).printNotification(eq("PARKING_1"));
+        verify(parkingListener).notifyMaxCapacity(eq("PARKING_1"));
+    }
+
+    @Test
+    public void itShouldParkOutOneCar() {
+        parkingLot = new ParkingLot(10, parkingListener, "PARKING_1");
+        parkingLot.parkCar(1);
+        //assertTrue(parkingLot.parkOut(1));
+    }
+
+    @Test
+    public void itShouldNotifyOwnerWhenAlmostEmpty() {
+        parkingLot = new ParkingLot(10, parkingListener, "PARKING_1");
+        parkMultipleCars(8);
+        //parkOutultipleCars(8);
+        verify(parkingListener).notifyMaxCapacity(eq("PARKING_1"));
     }
 
     private void parkMultipleCars(int numberOfCars) {
@@ -45,6 +60,5 @@ public class ParkingLotTest {
             assertTrue(parkingLot.parkCar(i));
         }
     }
-
 
 }
