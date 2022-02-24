@@ -1,5 +1,6 @@
 package oop.car;
 
+import java.util.Comparator;
 import java.util.List;
 
 //"A parking lot assistant handles multiple parking lots, parking a car in the first parking lot with space"
@@ -26,5 +27,12 @@ public class ParkingAssistant {
             }
         }
         return false;
+    }
+
+    public boolean parkLargeCar(int carId) {
+        ParkingLot parkingLot = parkingLots.stream()
+                .min(Comparator.comparingDouble(ParkingLot::calculateOccupancy))
+                .orElse(null);
+        return parkingLot != null && parkingLot.parkIn(carId);
     }
 }

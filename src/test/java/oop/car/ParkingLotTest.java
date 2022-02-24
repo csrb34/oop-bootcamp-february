@@ -74,7 +74,7 @@ public class ParkingLotTest {
     public void itShouldCalculateCurrentOccupancy() {
         parkingLot = new ParkingLot(10, parkingListener, "PARKING_1");
         parkMultipleCars(2);
-        assertEquals(parkingLot.calculateOccupancy(), 0.25);
+        assertEquals(parkingLot.calculateOccupancy(), 0.20);
     }
 
 
