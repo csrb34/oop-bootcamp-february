@@ -13,7 +13,8 @@ public class Greet {
 
     public String greet(String name) {
         int hour = LocalDateTime.now(clock).getHour();
-        String nameUpdated = capitaliseFirstLetter(name) + getRestOfTheName(name);
+        String nameUpdated = formatName(name);
+
         if (6 <= hour && hour < 12) {
             return String.format("Good morning %s", nameUpdated);
         }
@@ -21,23 +22,19 @@ public class Greet {
             return String.format("Good evening %s", nameUpdated);
         }
 
-        if (22<= hour && hour<24 || 0<=hour&& hour < 6) {
+        if (22 <= hour && hour < 24 || 0 <= hour && hour < 6) {
             return String.format("Good night %s", nameUpdated);
         }
 
         return String.format("Hello %s", nameUpdated);
     }
 
-    public String trimName(String name, int trimTheNameStartingIndex, int trimTheNameEndingIndex) {
-        return name.substring(trimTheNameStartingIndex, trimTheNameEndingIndex);
+
+    private String formatName(String name) {
+        return capitaliseFirstLetter(name.trim());
     }
 
     private String capitaliseFirstLetter(String name) {
-        return trimName(name, 0, 1).toUpperCase();
+        return name.substring(0, 1).toUpperCase() + name.substring(1);
     }
-
-    private String getRestOfTheName(String name) {
-        return trimName(name, 1, name.length());
-    }
-
 }

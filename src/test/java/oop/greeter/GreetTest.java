@@ -22,7 +22,16 @@ public class GreetTest {
         String name = "Jenny";
         var result = greet.greet(name);
 
-        assertEquals(result, "Hello " + name);
+        assertEquals(result, "Hello Jenny");
+    }
+
+    @Test
+    public void itShouldTrimYourName() {
+        Greet greet = new Greet(Clock.fixed(Instant.parse(afternoonInstant), ZoneId.of("UTC")));
+        String name = "Jenny ";
+        var result = greet.greet(name);
+
+        assertEquals(result, "Hello Jenny");
     }
 
 
